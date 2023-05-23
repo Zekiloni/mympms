@@ -14,5 +14,9 @@ public class MobilePlanService {
             new MobilePlan("Test", 23),
             new MobilePlan("Second", 35)
         );
+    };
+
+    public MobilePlan getOneById(int id) {
+        return new MobilePlan("Yes", 3);
     }
 }
