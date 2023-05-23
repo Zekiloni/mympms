@@ -11,10 +11,10 @@ public class MobilePlanService {
 
     public List<MobilePlan> getAll() {
         return List.of(
-            new MobilePlan("Test", 23),
-            new MobilePlan("Second", 35)
+                new MobilePlan("Test", 23),
+                new MobilePlan("Second", 35)
         );
-    };
+    }
 
     public MobilePlan getOneById(int id) {
         return new MobilePlan("Yes", 3);

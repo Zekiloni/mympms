@@ -18,14 +18,14 @@ public class MobilePlanController {
     private final MobilePlanService mobilePlanService;
 
     @Autowired
-    public MobilePlanController(MobilePlanService mobilePlanService){
+    public MobilePlanController(MobilePlanService mobilePlanService) {
         this.mobilePlanService = mobilePlanService;
     }
 
     @GetMapping("/get-all")
     public ResponseEntity<List<MobilePlan>> getAll() {
         return ResponseEntity.ok(
-            mobilePlanService.getAll()
+                mobilePlanService.getAll()
         );
     }
 
