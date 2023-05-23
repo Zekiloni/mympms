@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+
 @RestController
 @RequestMapping("/mobile-plans")
 public class MobilePlanController {
@@ -30,7 +31,12 @@ public class MobilePlanController {
 
     @GetMapping("/{id}")
     public ResponseEntity<MobilePlan> getById(@PathVariable int mobilePlanId) {
-        return ResponseEntity.ok(mobilePlanService.getOneById(mobilePlanId));
-    }
+        MobilePlan plan = mobilePlanService.getOneById(mobilePlanId);
 
+        if (plan != null) {
+            return ResponseEntity.ok(plan);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }
