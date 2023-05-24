@@ -11,6 +11,7 @@ import jakarta.persistence.*;
 public class MobilePlan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "mobile_plan_id")
     private Integer id;
 
     private String name;
