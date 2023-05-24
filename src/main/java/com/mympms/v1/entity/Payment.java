@@ -1,6 +1,8 @@
 package com.mympms.v1.entity;
 
 import jakarta.persistence.*;
+import org.springframework.boot.context.properties.bind.DefaultValue;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -23,6 +25,62 @@ public class Payment {
     @Column(nullable = false)
     private BigDecimal amount;
 
+    @Column(name = "is_refunded", columnDefinition = "boolean default false")
+    private boolean refunded;
+
     @Column(nullable = false)
-    private LocalDateTime paymentDate;
+    private LocalDateTime createdAt;
+
+    public Payment() {
+        this.createdAt = LocalDateTime.now();
+    }
+
+    // Getters and Setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public MobilePlan getMobilePlan() {
+        return mobilePlan;
+    }
+
+    public void setMobilePlan(MobilePlan mobilePlan) {
+        this.mobilePlan = mobilePlan;
+    }
+
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
+
+    public boolean isRefunded() {
+        return refunded;
+    }
+
+    public void setRefunded(boolean refunded) {
+        this.refunded = refunded;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setPaymentDate(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
 }
