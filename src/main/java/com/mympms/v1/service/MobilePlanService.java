@@ -1,22 +1,32 @@
 package com.mympms.v1.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
+import java.util.Optional;
 
 import com.mympms.v1.entity.MobilePlan;
-import org.springframework.stereotype.Service;
+import com.mympms.v1.repository.MobilePlanRepository;
 
 
 @Service
-public class MobilePlanService {
+public class MobilePlanService implements MobilePlanServiceInterface {
+    @Autowired
+    private MobilePlanRepository mobilePlanRepository;
 
+    @Override
     public List<MobilePlan> getAll() {
-        return List.of(
-                new MobilePlan("Test", 23),
-                new MobilePlan("Second", 35)
-        );
+        return mobilePlanRepository.findAll();
     }
 
-    public MobilePlan getOneById(int id) {
-        return new MobilePlan("Yes", 3);
+    @Override
+    public void create(MobilePlan plan) {
+        mobilePlanRepository.save(plan);
+    }
+
+    @Override
+    public Optional<MobilePlan> getOneById(int id) {
+        return mobilePlanRepository.findById(id);
     }
 }

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -30,10 +31,10 @@ public class MobilePlanController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<MobilePlan> getById(@PathVariable int mobilePlanId) {
-        MobilePlan plan = mobilePlanService.getOneById(mobilePlanId);
+    public ResponseEntity<Optional<MobilePlan>> getById(@PathVariable int mobilePlanId) {
+        Optional<MobilePlan> plan = mobilePlanService.getOneById(mobilePlanId);
 
-        if (plan != null) {
+        if (plan.isPresent()) {
             return ResponseEntity.ok(plan);
         } else {
             return ResponseEntity.notFound().build();
