@@ -13,5 +13,4 @@ public interface MobilePlanServiceInterface {
     void deleteMany(List<MobilePlan> plans);
     List<MobilePlan> getAll();
     Optional<MobilePlan> getOneById(int id);
-
 }
