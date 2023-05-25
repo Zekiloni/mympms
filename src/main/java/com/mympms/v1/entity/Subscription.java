@@ -1,9 +1,10 @@
 package com.mympms.v1.entity;
 
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+
+import com.mympms.v1.enumeration.SubscriptionType;
 
 
 @Entity
@@ -21,6 +22,8 @@ public class Subscription {
     @ManyToOne
     @JoinColumn(name = "mobile_plan_id")
     private MobilePlan mobilePlan;
+
+    private SubscriptionType type;
 
     @Column(name = "starting_at")
     private LocalDate startingAt;
