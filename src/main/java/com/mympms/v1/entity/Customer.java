@@ -2,6 +2,9 @@ package com.mympms.v1.entity;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 
 @Entity
 @Table(name = "customers")
@@ -11,9 +14,19 @@ public class Customer {
     @Column(name = "customer_id")
     private Long id;
 
+    @Column(name = "first_name", nullable = false)
     private String firstName;
+
+    @Column(name = "last_name", nullable = false)
     private String lastName;
+
     private String email;
+
+    @Column
+    private LocalDateTime createdAt;
+
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    private List<Subscription> subscriptions;
 
     public Customer() {
     }
@@ -22,6 +35,8 @@ public class Customer {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+
+        this.createdAt = LocalDateTime.now();
     }
 
     public Long getId() {
@@ -55,4 +70,6 @@ public class Customer {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public void setCreatedAt(LocalDateTime date) { this.createdAt = date; }
 }

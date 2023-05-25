@@ -1,10 +1,9 @@
 package com.mympms.v1.entity;
 
-import jakarta.persistence.*;
-import org.springframework.boot.context.properties.bind.DefaultValue;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+
+import jakarta.persistence.*;
 
 
 @Entity

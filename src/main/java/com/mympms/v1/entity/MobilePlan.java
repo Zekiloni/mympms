@@ -1,9 +1,10 @@
 package com.mympms.v1.entity;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import jakarta.persistence.*;
-
 
 
 @Entity
@@ -14,15 +15,27 @@ public class MobilePlan {
     @Column(name = "mobile_plan_id")
     private Integer id;
 
+    @Column(unique = true)
     private String name;
-    private int price;
+
+    @Column(nullable = false)
+    private BigDecimal price;
+
+    @Column(nullable = false, columnDefinition = "FLOAT(3,2) DEFAULT 0.00")
     private Float discount;
+
     private LocalDateTime createdAt;
+
+    @Column(columnDefinition = "TIMESTAMP DEFAULT NULL")
+    private LocalDateTime updatedAt;
+
+    @OneToMany(mappedBy = "mobilePlan", cascade = CascadeType.ALL)
+    private List<Subscription> subscriptions;
 
     public MobilePlan() {
     }
 
-    public MobilePlan(String name, int price) {
+    public MobilePlan(String name, BigDecimal price) {
         this.name = name;
         this.price = price;
         this.createdAt = LocalDateTime.now();
@@ -44,11 +57,11 @@ public class MobilePlan {
         this.name = name;
     }
 
-    public int getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
@@ -66,5 +79,10 @@ public class MobilePlan {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        this.updatedAt = LocalDateTime.now();
     }
 }
