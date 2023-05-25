@@ -17,21 +17,17 @@ import com.mympms.v1.service.MobilePlanService;
 @RestController
 @RequestMapping("/mobile-plans")
 public class MobilePlanController {
-    private final MobilePlanService mobilePlanService;
-
     @Autowired
-    public MobilePlanController(MobilePlanService mobilePlanService) {
-        this.mobilePlanService = mobilePlanService;
-    }
+    private MobilePlanService mobilePlanService;
 
-    @GetMapping("/get-all")
+    @GetMapping("/all")
     public ResponseEntity<List<MobilePlan>> getAll() {
         return ResponseEntity.ok(
-                mobilePlanService.getAll()
+            mobilePlanService.getAll()
         );
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/mobile-plan/{mobilePlanId}")
     public ResponseEntity<Optional<MobilePlan>> getById(@PathVariable int mobilePlanId) {
         Optional<MobilePlan> plan = mobilePlanService.getOneById(mobilePlanId);
 
