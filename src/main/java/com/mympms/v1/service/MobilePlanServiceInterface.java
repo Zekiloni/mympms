@@ -7,7 +7,11 @@ import com.mympms.v1.entity.MobilePlan;
 
 
 public interface MobilePlanServiceInterface {
-    List<MobilePlan> getAll();
     void create(MobilePlan plan);
+    void update(MobilePlan plan);
+    void delete(MobilePlan plan);
+    void deleteMany(List<MobilePlan> plans);
+    List<MobilePlan> getAll();
     Optional<MobilePlan> getOneById(int id);
+
 }
