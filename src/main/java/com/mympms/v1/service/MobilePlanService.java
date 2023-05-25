@@ -16,13 +16,28 @@ public class MobilePlanService implements MobilePlanServiceInterface {
     private MobilePlanRepository mobilePlanRepository;
 
     @Override
-    public List<MobilePlan> getAll() {
-        return mobilePlanRepository.findAll();
+    public void create(MobilePlan plan) {
+        mobilePlanRepository.save(plan);
     }
 
     @Override
-    public void create(MobilePlan plan) {
+    public void update(MobilePlan plan) {
         mobilePlanRepository.save(plan);
+    }
+
+    @Override
+    public void delete(MobilePlan plan) {
+        mobilePlanRepository.delete(plan);
+    }
+
+    @Override
+    public void deleteMany(List<MobilePlan> plans) {
+        mobilePlanRepository.deleteAll(plans);
+    }
+
+    @Override
+    public List<MobilePlan> getAll() {
+        return mobilePlanRepository.findAll();
     }
 
     @Override
