@@ -3,8 +3,9 @@ package com.mympms.v1.entity;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
-
 import jakarta.persistence.*;
+
+import com.mympms.v1.enumeration.PlanType;
 
 
 @Entity
@@ -20,6 +21,8 @@ public class MobilePlan {
 
     @Column(nullable = false)
     private BigDecimal price;
+
+    private PlanType type;
 
     @Column(nullable = false, columnDefinition = "FLOAT(3,2) DEFAULT 0.00")
     private Float discount;
