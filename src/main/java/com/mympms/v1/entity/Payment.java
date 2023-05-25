@@ -2,8 +2,9 @@ package com.mympms.v1.entity;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-
 import jakarta.persistence.*;
+
+import com.mympms.v1.enumeration.PaymentStatus;
 
 
 @Entity
@@ -24,13 +25,14 @@ public class Payment {
     @Column(nullable = false)
     private BigDecimal amount;
 
-    @Column(name = "is_refunded", columnDefinition = "boolean default false")
-    private boolean refunded;
+    @Column(name = "payment_status")
+    private PaymentStatus status;
 
     @Column(nullable = false)
     private LocalDateTime createdAt;
 
     public Payment() {
+        this.status = PaymentStatus.PENDING;
         this.createdAt = LocalDateTime.now();
     }
 
@@ -67,12 +69,12 @@ public class Payment {
         this.amount = amount;
     }
 
-    public boolean isRefunded() {
-        return refunded;
+    public PaymentStatus getStatus() {
+        return this.status;
     }
 
-    public void setRefunded(boolean refunded) {
-        this.refunded = refunded;
+    public void setRefunded() {
+        this.status = PaymentStatus.REFUNDED;
     }
 
     public LocalDateTime getCreatedAt() {

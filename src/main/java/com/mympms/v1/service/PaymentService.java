@@ -14,12 +14,8 @@ import java.time.LocalDateTime;
 
 @Service
 public class PaymentService {
-    private final PaymentRepository paymentRepository;
-
     @Autowired
-    public PaymentService(PaymentRepository paymentRepository) {
-        this.paymentRepository = paymentRepository;
-    }
+    private  PaymentRepository paymentRepository;
 
     public Payment create(Customer customer, MobilePlan mobilePlan, BigDecimal amount) {
         Payment payment = new Payment();
