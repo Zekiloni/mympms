@@ -3,6 +3,7 @@ package com.mympms.v1.controller;
 import java.util.List;
 import java.util.Optional;
 
+import com.mympms.v1.util.LoggerUtilComponent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,13 +12,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mympms.v1.service.CustomerService;
-import com.mympms.v1.util.LoggerUtil;
 import com.mympms.v1.entity.Customer;
 
 
 @RestController
 @RequestMapping("/customers")
 public class CustomerController {
+    @Autowired
+    private LoggerUtilComponent loggerUtilComponent;
     @Autowired
     public CustomerService customerService;
 
@@ -27,7 +29,7 @@ public class CustomerController {
             List<Customer> customers = customerService.getAll();
             return ResponseEntity.ok(customers);
         } catch (Throwable error) {
-            LoggerUtil.error(error.getLocalizedMessage(), error);
+            loggerUtilComponent.error(error.getLocalizedMessage(), error);
             return ResponseEntity.badRequest().build();
         }
     }
@@ -42,7 +44,7 @@ public class CustomerController {
                 return ResponseEntity.notFound().build();
             }
         } catch (Throwable error) {
-            LoggerUtil.error(error.getLocalizedMessage(), error);
+            loggerUtilComponent.error(error.getLocalizedMessage(), error);
             return ResponseEntity.badRequest().build();
         }
     }

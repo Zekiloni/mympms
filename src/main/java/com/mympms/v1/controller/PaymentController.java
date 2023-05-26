@@ -2,7 +2,7 @@ package com.mympms.v1.controller;
 
 import com.mympms.v1.entity.Payment;
 import com.mympms.v1.service.PaymentService;
-import com.mympms.v1.util.LoggerUtil;
+import com.mympms.v1.util.LoggerUtilComponent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +12,9 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/payments")
 public class PaymentController {
+    @Autowired
+    private LoggerUtilComponent loggerUtilComponent;
+
     @Autowired
     private PaymentService paymentService;
 
@@ -25,7 +28,7 @@ public class PaymentController {
                 return ResponseEntity.notFound().build();
             }
         } catch (Throwable error) {
-            LoggerUtil.error(error.getLocalizedMessage(), error);
+            loggerUtilComponent.error(error.getLocalizedMessage(), error);
             return ResponseEntity.internalServerError().build();
         }
     }
@@ -36,7 +39,7 @@ public class PaymentController {
             Payment createdPayment = paymentService.create(payment);
             return ResponseEntity.ok(createdPayment);
         } catch (Throwable error) {
-            LoggerUtil.error(error.getLocalizedMessage(), error);
+            loggerUtilComponent.error(error.getLocalizedMessage(), error);
             return ResponseEntity.internalServerError().build();
         }
     }

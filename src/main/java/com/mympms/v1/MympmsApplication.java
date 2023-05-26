@@ -8,6 +8,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class MympmsApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(MympmsApplication.class, args);
+        try {
+            SpringApplication.run(MympmsApplication.class, args);
+        } catch (Exception exception) {
+            throw exception;
+        }
     }
 }

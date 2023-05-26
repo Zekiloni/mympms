@@ -44,7 +44,7 @@ public class MobilePlan {
         this.createdAt = LocalDateTime.now();
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
