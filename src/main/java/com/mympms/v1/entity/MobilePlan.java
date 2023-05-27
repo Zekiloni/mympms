@@ -1,11 +1,11 @@
 package com.mympms.v1.entity;
 
+import com.mympms.v1.enumeration.PlanType;
+import jakarta.persistence.*;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
-import jakarta.persistence.*;
-
-import com.mympms.v1.enumeration.PlanType;
 
 
 @Entity

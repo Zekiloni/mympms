@@ -1,9 +1,9 @@
 package com.mympms.v1.entity;
 
-import jakarta.persistence.*;
-import java.time.LocalDate;
-
 import com.mympms.v1.enumeration.UsageType;
+import jakarta.persistence.*;
+
+import java.time.LocalDate;
 
 
 @Entity

@@ -1,10 +1,10 @@
 package com.mympms.v1.entity;
 
+import com.mympms.v1.enumeration.SubscriptionType;
 import jakarta.persistence.*;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-
-import com.mympms.v1.enumeration.SubscriptionType;
 
 
 @Entity

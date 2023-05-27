@@ -1,10 +1,10 @@
 package com.mympms.v1.entity;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import com.mympms.v1.enumeration.PaymentStatus;
 import jakarta.persistence.*;
 
-import com.mympms.v1.enumeration.PaymentStatus;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 
 @Entity

@@ -1,5 +1,6 @@
 package com.mympms.v1.config;
 
+import com.mympms.v1.util.JwtUtilComponent;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -11,8 +12,6 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 import java.util.Optional;
-
-import com.mympms.v1.util.JwtUtilComponent;
 
 
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
