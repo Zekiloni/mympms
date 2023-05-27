@@ -41,7 +41,6 @@ public class PaymentService implements BaseServiceInterface<Payment> {
         return paymentRepository.findAll();
     }
 
-
     @Override
     public Optional<Payment> getOneById(int paymentId) {
         return paymentRepository.findById(paymentId);
