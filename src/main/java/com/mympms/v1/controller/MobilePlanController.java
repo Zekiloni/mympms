@@ -3,6 +3,7 @@ package com.mympms.v1.controller;
 import java.util.List;
 import java.util.Optional;
 
+import com.mympms.v1.util.LoggerUtilComponent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,8 +18,13 @@ import com.mympms.v1.service.MobilePlanService;
 @RestController
 @RequestMapping("/mobile-plans")
 public class MobilePlanController {
+
+    @Autowired
+    private LoggerUtilComponent loggerUtil;
+
     @Autowired
     private MobilePlanService mobilePlanService;
+
 
     @GetMapping("/all")
     public ResponseEntity<List<MobilePlan>> getAll() {

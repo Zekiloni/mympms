@@ -11,13 +11,13 @@ import com.mympms.v1.entity.Customer;
 
 
 @Service
-public class CustomerService implements CustomerServiceInterface {
+public class CustomerService implements BaseServiceInterface<Customer> {
     @Autowired
     private CustomerRepository customerRepository;
 
     @Override
-    public void create(Customer customer) {
-        customerRepository.save(customer);
+    public Customer create(Customer customer) {
+        return customerRepository.save(customer);
     }
 
     @Override

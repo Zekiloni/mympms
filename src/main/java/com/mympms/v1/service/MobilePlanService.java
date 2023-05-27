@@ -11,13 +11,13 @@ import com.mympms.v1.repository.MobilePlanRepository;
 
 
 @Service
-public class MobilePlanService implements MobilePlanServiceInterface {
+public class MobilePlanService implements BaseServiceInterface<MobilePlan> {
     @Autowired
     private MobilePlanRepository mobilePlanRepository;
 
     @Override
-    public void create(MobilePlan plan) {
-        mobilePlanRepository.save(plan);
+    public MobilePlan create(MobilePlan plan) {
+        return mobilePlanRepository.save(plan);
     }
 
     @Override
