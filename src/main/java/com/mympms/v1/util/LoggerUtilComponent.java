@@ -12,6 +12,7 @@ public class LoggerUtilComponent {
     public LoggerUtilComponent() {
         this.logger = LoggerFactory.getLogger(LoggerUtilComponent.class);
     }
+
     public void info(String message) {
         logger.info(message);
     }

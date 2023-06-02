@@ -26,7 +26,7 @@ public class SubscriptionController {
     private SubscriptionService subscriptionService;
 
 
-    @GetMapping("/get-all")
+    @GetMapping
     public ResponseEntity<List<Subscription>> getAll() {
         try {
             List<Subscription> subscriptions = subscriptionService.getAll();

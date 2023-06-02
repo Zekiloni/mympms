@@ -2,6 +2,7 @@ package com.mympms.v1.controller;
 
 import com.mympms.v1.entity.Customer;
 import com.mympms.v1.entity.Payment;
+import com.mympms.v1.entity.Subscription;
 import com.mympms.v1.service.PaymentService;
 import com.mympms.v1.util.LoggerUtilComponent;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -23,6 +25,17 @@ public class PaymentController {
     @Autowired
     private PaymentService paymentService;
 
+
+    @GetMapping
+    public ResponseEntity<List<Payment>> getAll() {
+        try {
+            List<Payment> allPayments = paymentService.getAll();
+            return ResponseEntity.ok(allPayments);
+        } catch (Exception exception) {
+            loggerUtil.error(exception.getLocalizedMessage(), exception);
+            return ResponseEntity.internalServerError().build();
+        }
+    }
 
     @GetMapping("/payment/{paymentId}")
     public ResponseEntity<Optional<Payment>> getOneById(@PathVariable int paymentId) {

@@ -25,7 +25,7 @@ public class MobilePlanController {
     private MobilePlanService mobilePlanService;
 
 
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<List<MobilePlan>> getAll() {
         return ResponseEntity.ok(
             mobilePlanService.getAll()

@@ -1,7 +1,7 @@
 package com.mympms.v1.util;
 
 import com.mympms.v1.entity.Customer;
-import com.mympms.v1.enumeration.AuthorityType;
+import com.mympms.v1.enumeration.Role;
 import com.mympms.v1.service.CustomerService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -72,7 +72,7 @@ public class JwtUtilComponent {
         List<GrantedAuthority> authorities = new ArrayList<>();
 
         authorities.add(
-                new SimpleGrantedAuthority(AuthorityType.ROLE_SUPER_ADMIN.name()) // in dev
+            new SimpleGrantedAuthority(Role.ROLE_SUPER_ADMIN.name()) // in dev
         );
 
         Optional<Customer> customer = customerService.getOneById(userId);

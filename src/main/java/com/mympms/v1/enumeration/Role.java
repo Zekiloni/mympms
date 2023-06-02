@@ -1,6 +1,6 @@
 package com.mympms.v1.enumeration;
 
-public enum AuthorityType {
+public enum Role {
     ROLE_CUSTOMER,
     ROLE_EMPLOYEE,
     ROLE_ADMIN,

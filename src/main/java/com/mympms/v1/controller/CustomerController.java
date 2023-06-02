@@ -4,11 +4,10 @@ import com.mympms.v1.entity.Customer;
 import com.mympms.v1.service.CustomerService;
 import com.mympms.v1.util.LoggerUtilComponent;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,18 +16,21 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/customers")
 public class CustomerController {
+
     @Autowired
-    private LoggerUtilComponent loggerUtilComponent;
+    private LoggerUtilComponent loggerUtil;
+
     @Autowired
     public CustomerService customerService;
 
-    @GetMapping("/all")
+
+    @GetMapping
     public ResponseEntity<List<Customer>> getAll() {
         try {
             List<Customer> customers = customerService.getAll();
             return ResponseEntity.ok(customers);
         } catch (Throwable error) {
-            loggerUtilComponent.error(error.getLocalizedMessage(), error);
+            loggerUtil.error(error.getLocalizedMessage(), error);
             return ResponseEntity.badRequest().build();
         }
     }
@@ -43,8 +45,19 @@ public class CustomerController {
                 return ResponseEntity.notFound().build();
             }
         } catch (Throwable error) {
-            loggerUtilComponent.error(error.getLocalizedMessage(), error);
+            loggerUtil.error(error.getLocalizedMessage(), error);
             return ResponseEntity.badRequest().build();
+        }
+    }
+
+    @PostMapping("/customer")
+    public ResponseEntity<Customer> create(@RequestBody Customer customer) {
+        try {
+            Customer createdCustomer = customerService.create(customer);
+            return ResponseEntity.ok(createdCustomer);
+        } catch (DataAccessException dataAccessException) {
+            loggerUtil.error("Failed to create customer: {}" + dataAccessException.getLocalizedMessage(), dataAccessException);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
 }

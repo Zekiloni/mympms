@@ -1,8 +1,12 @@
 package com.mympms.v1.entity;
 
+import com.mympms.v1.enumeration.Role;
 import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.List;
 
 
@@ -72,4 +76,8 @@ public class Customer {
     }
 
     public void setCreatedAt(LocalDateTime date) { this.createdAt = date; }
+
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(Role.ROLE_CUSTOMER.name()));
+    }
 }
